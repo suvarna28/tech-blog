@@ -1,0 +1,108 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    font-size: medium;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: #E4F9F5;
+    color: #1F8A70;
+    font-family: 'Sacramento', cursive;
+}
+
+main {
+    padding-top: 40px;
+}
+
+.header-nav {
+    float: right;
+    padding-top: 35px;
+}
+
+a {
+    color: #1F8A70;
+    text-decoration: none !important;
+    font-size: x-large;
+}
+
+header div {
+    padding: 0 20px;
+    width: 50%;
+}
+
+.login-page {
+    max-width: 300px;
+    height: fit-content;
+    margin: auto;
+    border: 4px solid #1F8A70;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    display: grid;
+    place-items: center;
+    align-content: left;
+}
+
+.signup-page {
+    max-width: 300px;
+    height: fit-content;
+    margin: auto;
+    border: 4px solid #1F8A70;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    display: grid;
+    place-items: center;
+    align-content: left;
+}
+
+.createpost-page {
+    max-width: 1200px;
+    height: fit-content;
+    margin: auto;
+    border: 4px solid #1F8A70;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    display: grid;
+    place-items: center;
+    align-content: left;
+}
+
+p a {
+    color: black;
+    font-size: medium;
+    text-decoration: underline;
+}
+
+button {
+    background-color: #E4F9F5;
+    color: #1F8A70;
+    border: 1px solid #1F8A70;
+    border-radius: 5px;
+}
+
+label {
+    text-align: left;
+}
+
+input {
+    float: right;
+}
+
+h2 {
+    color: #1F8A70;
+    text-align: center;
+}
+
+.card {
+    margin: 20px;
+    padding: 10px;
+    background-color: #E4F9F5;
+    color:#1F8A70;
+    border-radius: 5px;
+}

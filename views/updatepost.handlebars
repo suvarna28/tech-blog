@@ -1,0 +1,17 @@
+<div class="row updatepost-page">
+    <h2>Update Post</h2>
+    <form class="form updatepost-form">
+        <p>Title</p>
+        <textarea rows="4" cols="40" id="title">{{ post.title }}</textarea>
+        <br>
+
+        <p>Content</p>
+        <textarea rows="4" cols="40" id="content">{{ post.content }}</textarea>
+        <br>
+        <div>
+            <button class="btn btn-secondary" type="submit">Update</button>
+        </div>
+    </form>
+</div>
+
+<script src="./js/updatepost.js"></script>
