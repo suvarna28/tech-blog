@@ -2,6 +2,7 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
+    color: #1F8A70;
 }
 
 header {
@@ -16,6 +17,8 @@ header {
 
 main {
     padding-top: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .header-nav {
@@ -97,6 +100,10 @@ input {
 h2 {
     color: #1F8A70;
     text-align: center;
+}
+
+h1 {
+    color: #1F8A70;
 }
 
 .card {

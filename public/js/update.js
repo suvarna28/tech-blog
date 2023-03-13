@@ -8,6 +8,8 @@ const updatePostFormHandler = async (event) => {
         window.location.toString().split('/').length - 1
     ];
 
+    console.log("12345678901234567890");
+
     if (title && content) {
         const response = await fetch(`/api/posts/${id}`, {
             method: 'PUT',
@@ -24,5 +26,5 @@ const updatePostFormHandler = async (event) => {
 };
 
 document
-    .querySelector('.updatepost-form')
+    .querySelector('.update-form')
     .addEventListener('submit', updatePostFormHandler);
