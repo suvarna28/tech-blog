@@ -92,7 +92,7 @@ router.get('/editcomment/:id', async (req, res) => {
 });
 
 // Edit post handlebars form
-router.get('/update/:id', async (req, res) => {
+router.get('/update/:id', withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id);
 

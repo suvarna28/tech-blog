@@ -7,6 +7,7 @@ This is blog site where developers can publish their blog posts and comment on o
 The application can be invoked by using 'node server.js' command. 
 
 * When you visit the site for the first time then you are presented with the homepage, which includes existing blog posts if any have been posted; navigation links for the homepage and the dashboard; and the option to log in
+* You can view your dashboard with your posts only when you are logged in. 
 * When you click on Login, you can see an option to either Login or Signup
 * Once logged in, you can see an option to logout
 * You can will see "+ New Post", which lets you create new post. 
