@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const Post = require('../models/Post');
+const Comment = require('../models/Comment');
 
 router.get('/', async (req, res) => {
   try {
@@ -25,12 +26,24 @@ router.get('/', async (req, res) => {
 
 router.get('/post/:id', async (req, res) => {
   try {
-    const postData = await Post.findByPk(req.params.id);
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+        {
+          model: Comment,
+        },
+      ],
+    });
 
     const post = postData.get({ plain: true });
 
-    res.render('updatepost', {
-      post,
+    // console.log("&&&&&&&%%%%%%%%%%%%%%%%%%%" + JSON.stringify(post));
+
+    res.render('eachpost', {
+      ...post,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -50,9 +63,63 @@ router.get('/createpost', (req, res) => {
   res.render('createpost');
 });
 
+router.get('/addcomment/:id', async (req, res) => {
+  const postData = await Post.findByPk(req.params.id);
+
+  const post = postData.get({ plain: true });
+  
+  res.render('addcomment', {
+    post,
+    logged_in: req.session.logged_in
+  });
+});
+
+router.get('/editcomment/:id', async (req, res) => {
+
+  // console.log("&&&&&&&%%%%%%%%%%%%%%%%%%%^^^^^^^^^^^^^^^^^");
+
+  const commentData = await Comment.findByPk(req.params.id);
+
+  const comment = commentData.get({ plain: true });
+  
+  res.render('editcomment', {
+    comment,
+    logged_in: req.session.logged_in
+  });
+});
+
+router.get('/update/:id', async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id);
+
+    const post = postData.get({ plain: true });
+
+    res.render('update', {
+      post,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 router.get('/dashboard', async (req, res) => {
   try {
-    const postData = await Post.findAll({ where: { user_id: parseInt(req.session.user_id) } });
+    const postData = await Post.findAll({
+      where: {
+        user_id: parseInt(req.session.user_id)
+      },
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+        {
+          model: Comment,
+          attributes: ['contents', 'date_created'],
+        },
+      ],
+    });
 
     if (!postData) {
       res

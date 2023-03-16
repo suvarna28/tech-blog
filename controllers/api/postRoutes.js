@@ -28,7 +28,7 @@ router.post('/createpost', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
 
-    // console.log("Inside update click : ");
+    console.log("Inside update click : ");
     try {
         var date = new Date();
         const postData = await Post.update(

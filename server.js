@@ -7,6 +7,7 @@ const helpers = require('./utils/helpers');
 const sequelize = require('./config/connection');
 require('./models/User');
 require('./models/Post');
+require('./models/Comment');
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 require('./models');

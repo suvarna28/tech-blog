@@ -1,0 +1,13 @@
+<div class="row">
+    <h2>Edit Comment</h2>
+    <form class="editcomment-form">
+        <p>Content</p>
+        <textarea rows="4" cols="40" id="content">{{comment.contents}}</textarea>
+        <br>
+        <div>
+            <p><button class="btn btn-secondary" id="editcomment" data-id="{{comment.id}}">Save</button></p>
+        </div>
+    </form>
+</div>
+
+<script src="/js/editcomment.js"></script>

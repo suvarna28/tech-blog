@@ -1,0 +1,30 @@
+<section class="card">
+    <header>{{ title }}</header>
+    <div class="card-body">
+        <p>{{ content }}</p>
+        <p>By: {{ user.username }} {{ date_created }}</p>
+        <p><button class="btn btn-secondary" onclick="window.location.href='/update/{{id}}';">Update</button></p>
+        {{!-- <p><button class="btn btn-secondary" id="delete" data-id="{{id}}">Delete</button></p> --}}
+    </div>
+</section>
+
+{{#if logged_in}}
+<p><button class="btn btn-secondary" onclick="window.location.href='/addcomment/{{ id }}';">
+        + New Comment</button></p>
+{{/if}}
+
+{{#if comments.length}}
+
+<p>Comments</p>
+
+{{#each comments as |comment|}}
+
+{{> comment-details }}
+
+{{/each}}
+
+{{/if}}
+
+
+
+{{!-- <script src="/js/comment.js"></script> --}}

@@ -7,30 +7,30 @@ Comment.init(
     {
         id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
             primaryKey: true,
             autoIncrement: true,
         },
-        content: {
+        contents: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         date_created: {
             type: DataTypes.DATE,
-            allowNull: false,
+            allowNull: true,
             defaultValue: DataTypes.NOW,
-        },
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'user',
-                key: 'id',
-            },
         },
         post_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'post',
+                key: 'id',
+            },
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'user',
                 key: 'id',
             },
         },

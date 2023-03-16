@@ -1,6 +1,6 @@
 <div class="row update-page">
     <h2>Update Post</h2>
-    <form class="update-form">
+    <div>
         <p>Title</p>
         <textarea rows="4" cols="40" id="title">{{ post.title }}</textarea>
         <br>
@@ -9,9 +9,9 @@
         <textarea rows="4" cols="40" id="content">{{ post.content }}</textarea>
         <br>
         <div>
-            <button class="btn btn-secondary" type="submit">Update</button>
+            <button class="btn btn-secondary" id="update" data-id="{{ post.id }}">Update</button>
         </div>
-    </form>
+    </div>
 </div>
 
-<script src="/js/update.js"></script>
+<script src="/js/update.js"></script> 

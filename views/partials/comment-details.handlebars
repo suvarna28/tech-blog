@@ -1,0 +1,13 @@
+<section class="card">
+    <div class="card-body">
+        <p>{{ contents }}</p>
+        <p>{{ date_created }}</p>
+        <div>
+            <p><button class="btn btn-secondary" onclick="window.location.href='/editcomment/{{id}}';">Edit Comment</button></p>
+        </div>
+        <div>
+            <p><button class="btn btn-secondary" id="deletecomment" data-id="{{id}}">Delete</button></p>
+        </div>
+    </div>
+</section>
+
