@@ -15,7 +15,7 @@ const editCommentPostFormHandler = async (event) => {
 
             if (response.ok) {
                 const comment = await response.json();
-                console.log("^^^^^^^^^^^^^", comment);
+                // console.log("^^^^^^^^^^^^^", comment);
                 document.location.replace(`/post/${comment["post_id"]}`);
             } else {
                 alert(response.statusText);

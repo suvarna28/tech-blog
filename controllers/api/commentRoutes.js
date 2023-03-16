@@ -51,4 +51,51 @@ router.put('/edit/:id', async (req, res) => {
     }
 });
 
+router.get('/deletecomment/:id', async (req, res) => {
+    console.log("Inside Delete : ^^^^^^^^^^^^^^^^^^" + req.params.id)
+    try {
+        const commentData = await Comment.destroy({
+            where: {
+                id: req.params.id
+            }
+        });
+        if (!commentData) {
+            res.status(404).json({ message: 'No comment found with this id!' });
+            return;
+        }
+
+        const postData = await Post.findAll({
+            where: {
+                user_id: parseInt(req.session.user_id)
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                },
+                {
+                    model: Comment,
+                    attributes: ['contents', 'date_created'],
+                },
+            ],
+        });
+
+        if (!postData) {
+            res
+                .status(400)
+                .json({ message: 'No user posts found.' });
+            return;
+        }
+
+        const posts = postData.map((post) => post.get({ plain: true }));
+
+        res.render('dashboard', {
+            posts,
+            logged_in: req.session.logged_in
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 module.exports = router;
