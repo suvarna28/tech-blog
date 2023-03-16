@@ -2,6 +2,7 @@ const router = require('express').Router();
 const Post = require('../../models/Post');
 const User = require('../../models/User');
 
+// Create new post route
 router.post('/createpost', async (req, res) => {
     try {
         var date = new Date();
@@ -14,8 +15,6 @@ router.post('/createpost', async (req, res) => {
 
         const post = postData.get({ plain: true });
 
-        // const userData = await User.findOne({ where: { id: post.user_id } });
-
         res.render('dashboard', {
             post, logged_in: req.session.logged_in
         });
@@ -26,9 +25,8 @@ router.post('/createpost', async (req, res) => {
     }
 });
 
+// Update existing post route
 router.put('/:id', async (req, res) => {
-
-    console.log("Inside update click : ");
     try {
         var date = new Date();
         const postData = await Post.update(
@@ -53,8 +51,8 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+// Delete existing post route
 router.delete('/:id', async (req, res) => {
-    console.log("Inside Delete : ^^^^^^^^^^^^^^^^^^" + req.params.id)
     try {
         const post = await Post.destroy({
             where: {

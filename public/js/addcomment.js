@@ -14,7 +14,6 @@ const addCommentFormHandler = async (event) => {
             });
 
             if (response.ok) {
-                // const postID 
                 document.location.replace(`/post/${id}`);
             } else {
                 alert(response.statusText);

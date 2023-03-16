@@ -3,6 +3,7 @@ const User = require('../models/User');
 const Post = require('../models/Post');
 const Comment = require('../models/Comment');
 
+// Get all posts on the main homepage route
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -24,6 +25,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get a single post route when you click on the post
 router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
@@ -40,8 +42,6 @@ router.get('/post/:id', async (req, res) => {
 
     const post = postData.get({ plain: true });
 
-    // console.log("&&&&&&&%%%%%%%%%%%%%%%%%%%" + JSON.stringify(post));
-
     res.render('eachpost', {
       ...post,
       logged_in: req.session.logged_in
@@ -51,18 +51,22 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
+// Login handlebars form
 router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// Signup handlebars form
 router.get('/signup', (req, res) => {
   res.render('signup');
 });
 
+// Createpost handlebars form
 router.get('/createpost', (req, res) => {
   res.render('createpost');
 });
 
+// Add comment handlebars form
 router.get('/addcomment/:id', async (req, res) => {
   const postData = await Post.findByPk(req.params.id);
 
@@ -74,10 +78,8 @@ router.get('/addcomment/:id', async (req, res) => {
   });
 });
 
+// Edit comment handlebars form
 router.get('/editcomment/:id', async (req, res) => {
-
-  // console.log("&&&&&&&%%%%%%%%%%%%%%%%%%%^^^^^^^^^^^^^^^^^");
-
   const commentData = await Comment.findByPk(req.params.id);
 
   const comment = commentData.get({ plain: true });
@@ -88,6 +90,7 @@ router.get('/editcomment/:id', async (req, res) => {
   });
 });
 
+// Edit post handlebars form
 router.get('/update/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id);
@@ -103,6 +106,7 @@ router.get('/update/:id', async (req, res) => {
   }
 });
 
+// Get your dashboard route
 router.get('/dashboard', async (req, res) => {
   try {
     const postData = await Post.findAll({

@@ -3,6 +3,7 @@ const Comment = require('../../models/Comment');
 const Post = require('../../models/Post');
 const User = require('../../models/User');
 
+// Create new comment
 router.post('/:id', async (req, res) => {
     try {
         var date = new Date();
@@ -19,11 +20,10 @@ router.post('/:id', async (req, res) => {
     }
 });
 
+// Edit existing comment
 router.put('/edit/:id', async (req, res) => {
     try {
         var date = new Date();
-
-        // console.log("***************************** ");
 
         await Comment.update(
             {
@@ -41,18 +41,14 @@ router.put('/edit/:id', async (req, res) => {
 
         const comment = commentData.get({ plain: true });
 
-        // // const comment = commentData.get({ plain: true });
-
-        // console.log("***************************** " + comment);
-
         res.status(200).json(comment);
     } catch (err) {
         res.status(400).json(err);
     }
 });
 
+// Delete existing comment
 router.get('/deletecomment/:id', async (req, res) => {
-    console.log("Inside Delete : ^^^^^^^^^^^^^^^^^^" + req.params.id)
     try {
         const commentData = await Comment.destroy({
             where: {
