@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require('../models/User');
 const Post = require('../models/Post');
 const Comment = require('../models/Comment');
+// const withAuth = require('../utils/auth');
 
 // Get all posts on the main homepage route
 router.get('/', async (req, res) => {
@@ -41,6 +42,8 @@ router.get('/post/:id', async (req, res) => {
     });
 
     const post = postData.get({ plain: true });
+
+
 
     res.render('eachpost', {
       ...post,

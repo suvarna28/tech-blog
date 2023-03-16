@@ -2,6 +2,7 @@ const router = require('express').Router();
 const Comment = require('../../models/Comment');
 const Post = require('../../models/Post');
 const User = require('../../models/User');
+// const withAuth = require('../../utils/auth');
 
 // Create new comment
 router.post('/:id', async (req, res) => {
@@ -50,6 +51,10 @@ router.put('/edit/:id', async (req, res) => {
 // Delete existing comment
 router.get('/deletecomment/:id', async (req, res) => {
     try {
+        const commentHere = await Comment.findByPk(req.params.id);
+
+        const comment = commentHere.get({ plain: true });
+
         const commentData = await Comment.destroy({
             where: {
                 id: req.params.id
@@ -60,35 +65,7 @@ router.get('/deletecomment/:id', async (req, res) => {
             return;
         }
 
-        const postData = await Post.findAll({
-            where: {
-                user_id: parseInt(req.session.user_id)
-            },
-            include: [
-                {
-                    model: User,
-                    attributes: ['username'],
-                },
-                {
-                    model: Comment,
-                    attributes: ['contents', 'date_created'],
-                },
-            ],
-        });
-
-        if (!postData) {
-            res
-                .status(400)
-                .json({ message: 'No user posts found.' });
-            return;
-        }
-
-        const posts = postData.map((post) => post.get({ plain: true }));
-
-        res.render('dashboard', {
-            posts,
-            logged_in: req.session.logged_in
-        });
+        res.redirect(`/post/${comment["post_id"]}`);
     } catch (err) {
         res.status(500).json(err);
     }

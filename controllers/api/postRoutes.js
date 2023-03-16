@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Post = require('../../models/Post');
 const User = require('../../models/User');
+// const withAuth = require('../../utils/auth');
 
 // Create new post route
 router.post('/createpost', async (req, res) => {
@@ -32,7 +33,8 @@ router.put('/:id', async (req, res) => {
         const postData = await Post.update(
             {
                 title: req.body.title,
-                content: req.body.content
+                content: req.body.content,
+                date_created: date,
             },
             {
                 where: {
@@ -63,34 +65,9 @@ router.delete('/:id', async (req, res) => {
             res.status(404).json({ message: 'No post found with this id!' });
             return;
         }
-        const postData = await Post.findAll({
-            where: {
-                user_id: parseInt(req.session.user_id)
-            },
-            include: [
-                {
-                    model: User,
-                    attributes: ['username'],
-                },
-                {
-                    model: Comment,
-                    attributes: ['contents', 'date_created'],
-                },
-            ],
-        });
-
-        if (!postData) {
-            res
-                .status(400)
-                .json({ message: 'No user posts found.' });
-            return;
-        }
-
-        const posts = postData.map((post) => post.get({ plain: true }));
 
         res.render('dashboard', {
-            posts,
-            logged_in: req.session.logged_in
+            post, logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
